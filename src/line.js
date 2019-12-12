@@ -1,21 +1,22 @@
+const arePointsEqual = function(pointA, pointB) {
+  return pointA.x === pointB.x && pointA.y === pointB.y;
+};
+
 class Line {
-  constructor(firstPosition, secondPosition) {
-    this.x1 = firstPosition[0];
-    this.y1 = firstPosition[1];
-    this.x2 = secondPosition[0];
-    this.y2 = secondPosition[1];
+  constructor(start, end) {
+    this.start = { ...start };
+    this.end = { ...end };
   }
 
   toString() {
-    return "Line (1,2)----(3,4)";
+    const strForm = `Line: (${this.start.x},${this.start.y})----(${this.end.x},${this.end.y})`;
+    return strForm;
   }
 
   isEqualTo(anotherLine) {
     return (
-      this.x1 == anotherLine.x1 &&
-      this.x2 == anotherLine.x2 &&
-      this.y1 == anotherLine.y1 &&
-      this.y2 == anotherLine.y2
+      arePointsEqual(this.start, anotherLine.start) &&
+      arePointsEqual(this.end, anotherLine.end)
     );
   }
 }

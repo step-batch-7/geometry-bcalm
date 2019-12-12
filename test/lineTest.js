@@ -4,17 +4,17 @@ const assert = require("assert");
 describe("Line", () => {
   describe("toString", () => {
     it("should convert given data to string", () => {
-      const a = new Line([1, 2], [2, 3]);
+      const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = a.toString();
-      const expected = "Line (1,2)----(3,4)";
+      const expected = "Line: (1,2)----(3,4)";
       assert.deepStrictEqual(actual, expected);
     });
   });
   describe("isEqualTo", () => {
     it("should give true if given line is equal to our line", () => {
-      const anotherLine = { x1: 1, y1: 2, x2: 3, y2: 4 };
-      const a = new Line([1, 2], [3, 4]);
-      assert.ok(a.isEqualTo(anotherLine));
+      const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const b = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.ok(a.isEqualTo(b));
     });
   });
 });
