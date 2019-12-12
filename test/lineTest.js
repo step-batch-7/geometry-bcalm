@@ -13,7 +13,8 @@ describe("Line", () => {
   describe("isEqualTo", () => {
     it("should give true if given line is equal to our line", () => {
       const anotherLine = { x1: 1, y1: 2, x2: 3, y2: 4 };
-      assert.ok(Line.isEqualTo(anotherLine));
+      const a = new Line([1, 2], [3, 4]);
+      assert.ok(a.isEqualTo(anotherLine));
     });
   });
 });
