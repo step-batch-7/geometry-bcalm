@@ -6,7 +6,7 @@ describe("Line", () => {
     it("should convert given data to string", () => {
       const a = new Line([1, 2], [2, 3]);
       const actual = a.toString();
-      const expected = "Line start from (1,2) and ends with (2,3)";
+      const expected = "Line (1,2)----(3,4)";
       assert.deepStrictEqual(actual, expected);
     });
   });

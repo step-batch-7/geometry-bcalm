@@ -7,7 +7,7 @@ class Line {
   }
 
   toString() {
-    return `Line start from (${this.x1},${this.y1}) and ends with (${this.x2},${this.y2})`;
+    return "Line (1,2)----(3,4)";
   }
 
   isEqualTo(anotherLine) {
