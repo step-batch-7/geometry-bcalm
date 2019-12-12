@@ -1,5 +1,5 @@
 const Line = require("../src/line.js");
-const assert = require("assert");
+const assert = require("chai").assert;
 
 describe("Line", () => {
   describe("toString", () => {
@@ -10,11 +10,24 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
   describe("isEqualTo", () => {
-    it("should give true if given line is equal to our line", () => {
+    it("should give true if given object is same as class created line object", () => {
       const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const b = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.ok(a.isEqualTo(b));
+      assert.isTrue(a.isEqualTo(b));
+    });
+
+    it("should give false if given object is not same as class created line object", () => {
+      const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const b = new Line({ x: 1, y: 2 }, { x: 3, y: 3 });
+      assert.isFalse(a.isEqualTo(b));
+    });
+
+    it("should give false if given object is not instance of class Line", () => {
+      const a = new Line({ x: 1, y: 2 }, { x: 3, y: 3 });
+      const b = { start: { x: 1, y: 2 }, end: { x: 3, y: 3 } };
+      assert.isFalse(a.isEqualTo(b));
     });
   });
 });

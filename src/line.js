@@ -14,10 +14,13 @@ class Line {
   }
 
   isEqualTo(anotherLine) {
-    return (
+    const matchType = anotherLine instanceof Line;
+
+    const matchProperty =
       arePointsEqual(this.start, anotherLine.start) &&
-      arePointsEqual(this.end, anotherLine.end)
-    );
+      arePointsEqual(this.end, anotherLine.end);
+
+    return matchProperty && matchType;
   }
 }
 

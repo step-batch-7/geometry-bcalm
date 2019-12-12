@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/step-batch-7/geometry-bcalm/issues"
   },
-  "homepage": "https://github.com/step-batch-7/geometry-bcalm#readme"
+  "homepage": "https://github.com/step-batch-7/geometry-bcalm#readme",
+  "dependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.19.1"
+  }
 }
