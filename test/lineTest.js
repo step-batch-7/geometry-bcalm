@@ -78,6 +78,11 @@ describe("Line", () => {
       const line = new Line({ x: 3, y: 1 }, { x: 3, y: 4 });
       assert.deepStrictEqual(line.slope, Infinity);
     });
+
+    it("should give slope for floating numbers", () => {
+      const line = new Line({ x: 1.2, y: 2.3 }, { x: 2.4, y: 3.5 });
+      assert.approximately(line.slope, 1, 0.1);
+    });
   });
 
   describe("isParallelTo", () => {
