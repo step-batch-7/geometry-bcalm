@@ -9,15 +9,16 @@ class Line {
   }
 
   toString() {
-    return `Line: (${this.start.x},${this.start.y})----(${this.end.x},${this.end.y})`;
+    const start = `${this.start.x},${this.start.y}`;
+    const end = `${this.end.x},${this.end.y}`;
+    return `Line: (${start})----(${end})`;
   }
 
-  isEqualTo(anotherLine) {
-    const isSameType = anotherLine instanceof Line;
+  isEqualTo(other) {
+    if (!(other instanceof Line)) return false;
     return (
-      isSameType &&
-      arePointsEqual(this.start, anotherLine.start) &&
-      arePointsEqual(this.end, anotherLine.end)
+      arePointsEqual(this.start, other.start) &&
+      arePointsEqual(this.end, other.end)
     );
   }
 }
