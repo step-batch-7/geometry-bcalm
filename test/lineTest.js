@@ -36,5 +36,10 @@ describe("Line", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 6 });
       assert.deepStrictEqual(line.length, 5);
     });
+
+    it("Should give length of line for negative points", () => {
+      const line = new Line({ x: -1, y: -2 }, { x: 2, y: 2 });
+      assert.deepStrictEqual(line.length, 5);
+    });
   });
 });
