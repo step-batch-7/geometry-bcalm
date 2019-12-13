@@ -54,4 +54,12 @@ describe("Line", () => {
       assert.deepStrictEqual(line.slope, 1);
     });
   });
+
+  describe("isParallelTo", function() {
+    it("Two lines have same slope are parallel", function() {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const otherLine = new Line({ x: 5, y: 4 }, { x: 8, y: 7 });
+      assert.isTrue(line.isParallelTo(otherLine));
+    });
+  });
 });

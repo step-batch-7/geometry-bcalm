@@ -34,6 +34,12 @@ class Line {
     const dy = this.start.y - this.end.y;
     return dy / dx;
   }
+
+  isParallelTo(otherLine) {
+    const slope1 = this.slope;
+    const slope2 = otherLine.slope;
+    return slope1 === slope2;
+  }
 }
 
 module.exports = Line;
