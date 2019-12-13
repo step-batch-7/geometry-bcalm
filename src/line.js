@@ -23,22 +23,20 @@ class Line {
   }
 
   get length() {
-    const dx = this.start.x - this.end.x;
-    const dy = this.start.y - this.end.y;
+    const dx = this.end.x - this.start.x;
+    const dy = this.end.y - this.start.y;
     const length = Math.sqrt(dx * dx + dy * dy);
     return length;
   }
 
   get slope() {
-    const dx = this.start.x - this.end.x;
-    const dy = this.start.y - this.end.y;
+    const dx = this.end.x - this.start.x;
+    const dy = this.end.y - this.start.y;
     return dy / dx;
   }
 
   isParallelTo(otherLine) {
-    const slope1 = this.slope;
-    const slope2 = otherLine.slope;
-    return slope1 === slope2;
+    return this.slope === otherLine.slope;
   }
 }
 

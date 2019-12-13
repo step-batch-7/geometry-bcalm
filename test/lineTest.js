@@ -31,7 +31,7 @@ describe("Line", () => {
     });
   });
 
-  describe("length", function() {
+  describe("length", () => {
     it("Should give length of line for positive points", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 6 });
       assert.deepStrictEqual(line.length, 5);
@@ -48,18 +48,39 @@ describe("Line", () => {
     });
   });
 
-  describe("slope", function() {
-    it("should give slope of line", function() {
+  describe("slope", () => {
+    it("should give slope of line for positive integer", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.slope, 1);
     });
+
+    it("should give slope for negative integer", () => {
+      const line = new Line({ x: -3, y: -2 }, { x: -6, y: -5 });
+      assert.deepStrictEqual(line.slope, 1);
+    });
+
+    it("should give NAN if length of line is zero", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.isNaN(line.slope);
+    });
+
+    it("should give infinity if line is parallel to x-axis", () => {
+      const line = new Line({ x: 5, y: 3 }, { x: 7, y: 3 });
+      assert.deepStrictEqual(line.slope, 0);
+    });
   });
 
-  describe("isParallelTo", function() {
-    it("Two lines have same slope are parallel", function() {
+  describe("isParallelTo", () => {
+    it("Two lines have same slope are parallel", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       const otherLine = new Line({ x: 5, y: 4 }, { x: 8, y: 7 });
       assert.isTrue(line.isParallelTo(otherLine));
+    });
+
+    it("Two lines haven't same slope are not parallel", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const otherLine = new Line({ x: 3, y: 2 }, { x: 6, y: 3 });
+      assert.isFalse(line.isParallelTo(otherLine));
     });
   });
 });
