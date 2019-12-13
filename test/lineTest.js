@@ -41,5 +41,10 @@ describe("Line", () => {
       const line = new Line({ x: -1, y: -2 }, { x: 2, y: 2 });
       assert.deepStrictEqual(line.length, 5);
     });
+
+    it("Should give length of line for floating points", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 7, y: 8 });
+      assert.approximately(line.length, 7.21, 0.1);
+    });
   });
 });
