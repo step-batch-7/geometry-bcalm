@@ -87,5 +87,11 @@ describe("Line", () => {
       const otherLine = new Line({ x: 3, y: 2 }, { x: 6, y: 3 });
       assert.isFalse(line.isParallelTo(otherLine));
     });
+
+    it("Two lines have different instance are not parallel", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const otherLine = { start: { x: 3, y: 2 }, end: { x: 6, y: 5 } };
+      assert.isFalse(line.isParallelTo(otherLine));
+    });
   });
 });
