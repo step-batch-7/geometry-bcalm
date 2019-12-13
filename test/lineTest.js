@@ -47,4 +47,11 @@ describe("Line", () => {
       assert.approximately(line.length, 7.21, 0.1);
     });
   });
+
+  describe("slope", function() {
+    it("should give slope of line", function() {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.deepStrictEqual(line.slope, 1);
+    });
+  });
 });

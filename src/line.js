@@ -28,6 +28,12 @@ class Line {
     const length = Math.sqrt(dx * dx + dy * dy);
     return length;
   }
+
+  get slope() {
+    const dx = this.start.x - this.end.x;
+    const dy = this.start.y - this.end.y;
+    return dy / dx;
+  }
 }
 
 module.exports = Line;
