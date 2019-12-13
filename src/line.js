@@ -9,18 +9,16 @@ class Line {
   }
 
   toString() {
-    const strForm = `Line: (${this.start.x},${this.start.y})----(${this.end.x},${this.end.y})`;
-    return strForm;
+    return `Line: (${this.start.x},${this.start.y})----(${this.end.x},${this.end.y})`;
   }
 
   isEqualTo(anotherLine) {
-    const matchType = anotherLine instanceof Line;
-
-    const matchProperty =
+    const isSameType = anotherLine instanceof Line;
+    return (
+      isSameType &&
       arePointsEqual(this.start, anotherLine.start) &&
-      arePointsEqual(this.end, anotherLine.end);
-
-    return matchProperty && matchType;
+      arePointsEqual(this.end, anotherLine.end)
+    );
   }
 }
 
