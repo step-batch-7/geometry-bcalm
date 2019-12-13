@@ -59,14 +59,19 @@ describe("Line", () => {
       assert.deepStrictEqual(line.slope, 1);
     });
 
-    it("should give NAN if length of line is zero", () => {
+    it("should give NaN if length of line is zero", () => {
       const line = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
       assert.isNaN(line.slope);
     });
 
-    it("should give infinity if line is parallel to x-axis", () => {
+    it("should give zero if line is parallel to x-axis", () => {
       const line = new Line({ x: 5, y: 3 }, { x: 7, y: 3 });
       assert.deepStrictEqual(line.slope, 0);
+    });
+
+    it("should give infinity if line is parallel to y- axis", () => {
+      const line = new Line({ x: 3, y: 1 }, { x: 3, y: 4 });
+      assert.deepStrictEqual(line.slope, Infinity);
     });
   });
 
