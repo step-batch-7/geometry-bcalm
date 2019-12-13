@@ -46,6 +46,11 @@ describe("Line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 7, y: 8 });
       assert.approximately(line.length, 7.21, 0.1);
     });
+
+    it("Should give zero if coordinates are same", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 3, y: 2 });
+      assert.deepStrictEqual(line.length, 0);
+    });
   });
 
   describe("slope", () => {
@@ -92,6 +97,12 @@ describe("Line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       const otherLine = { start: { x: 3, y: 2 }, end: { x: 6, y: 5 } };
       assert.isFalse(line.isParallelTo(otherLine));
+    });
+
+    it("should validate two overlapping lines are parallel ", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const otherLine = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.isTrue(line.isParallelTo(otherLine));
     });
   });
 });
