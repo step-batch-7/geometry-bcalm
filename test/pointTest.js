@@ -49,7 +49,7 @@ describe("Point", () => {
 
     it("should invalidate if given point are not instance of Point", () => {
       const point = new Point(1, 2);
-      const other = { x: 1, y: 2 };
+      const other = { p1: 1, p2: 2 };
       assert.isFalse(point.isEqualTo(other));
     });
   });

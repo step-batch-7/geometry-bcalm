@@ -1,22 +1,22 @@
 const arePointsEqual = function(PointA, PointB) {
-  return PointA.x === PointB.x && PointA.y === PointB.y;
+  return PointA.p1 === PointB.p1 && PointA.p2 === PointB.p2;
 };
 
 class Point {
-  constructor(x, y) {
-    [this.x, this.y] = [x, y];
+  constructor(p1, p2) {
+    [this.p1, this.p2] = [p1, p2];
   }
 
   toString() {
-    return `Point @(${this.x},${this.y})`;
+    return `Point @(${this.p1},${this.p2})`;
   }
 
   visit(functionREf) {
-    return functionREf(this.x, this.y);
+    return functionREf(this.p1, this.p2);
   }
 
   clone() {
-    return new Point(this.x, this.y);
+    return new Point(this.p1, this.p2);
   }
 
   isEqualTo(other) {
