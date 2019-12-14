@@ -33,4 +33,24 @@ describe("Point", () => {
       assert.deepStrictEqual(point.clone(), expected);
     });
   });
+
+  describe("isEqualTo", () => {
+    it("should validate if given points are equal", () => {
+      const point = new Point(1, 2);
+      const other = new Point(1, 2);
+      assert.isTrue(point.isEqualTo(other));
+    });
+
+    it("should invalidate if given points are not equal", () => {
+      const point = new Point(1, 2);
+      const other = new Point(3, 4);
+      assert.isFalse(point.isEqualTo(other));
+    });
+
+    it("should invalidate if given point are not instance of Point", () => {
+      const point = new Point(1, 2);
+      const other = { x: 1, y: 2 };
+      assert.isFalse(point.isEqualTo(other));
+    });
+  });
 });

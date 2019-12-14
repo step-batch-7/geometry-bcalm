@@ -1,3 +1,7 @@
+const arePointsEqual = function(PointA, PointB) {
+  return PointA.x === PointB.x && PointA.y === PointB.y;
+};
+
 class Point {
   constructor(x, y) {
     [this.x, this.y] = [x, y];
@@ -13,6 +17,11 @@ class Point {
 
   clone() {
     return new Point(this.x, this.y);
+  }
+
+  isEqualTo(other) {
+    if (!(other instanceof Point)) return false;
+    return arePointsEqual(this, other);
   }
 }
 
