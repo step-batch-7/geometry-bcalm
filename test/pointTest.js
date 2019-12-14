@@ -11,7 +11,7 @@ describe("Point", () => {
   });
 
   describe("visit", function() {
-    it("should give addition when addition function is given", function() {
+    it("should give addition when addition function is given", () => {
       const point = new Point(1, 2);
       const add = (x, y) => x + y;
       const actual = point.visit(add);
@@ -23,6 +23,14 @@ describe("Point", () => {
       const reminder = (x, y) => x % y;
       const actual = point.visit(reminder);
       assert.deepStrictEqual(actual, 1);
+    });
+  });
+
+  describe("clone", () => {
+    it("should give a object with same field values", () => {
+      const point = new Point(1, 2);
+      const expected = new Point(1, 2);
+      assert.deepStrictEqual(point.clone(), expected);
     });
   });
 });

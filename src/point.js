@@ -10,6 +10,10 @@ class Point {
   visit(functionREf) {
     return functionREf(this.x, this.y);
   }
+
+  clone() {
+    return new Point(this.x, this.y);
+  }
 }
 
 module.exports = Point;
