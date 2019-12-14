@@ -38,11 +38,9 @@ class Line {
     return otherLine instanceof Line && this.slope === otherLine.slope;
   }
 
-  findX(y) {
-    const m = this.slope;
-    const y1 = this.start.y;
-    const x1 = this.start.x;
-    return (y - y1 + m * x1) / m;
+  findX(ordinate) {
+    if (this.end.y < ordinate || ordinate < this.start.y) return NaN;
+    return (ordinate - this.start.y + this.slope * this.start.x) / this.slope;
   }
 }
 

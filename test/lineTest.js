@@ -110,5 +110,10 @@ describe("Line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.findX(3), 4);
     });
+
+    it("should give NaN if given y is outside the line segment", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.isNaN(line.findX(7));
+    });
   });
 });
