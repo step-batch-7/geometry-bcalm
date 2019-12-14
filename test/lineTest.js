@@ -1,5 +1,6 @@
-const Line = require("../src/line.js");
 const assert = require("chai").assert;
+const Line = require("../src/line.js");
+const Point = require("../src/point.js");
 
 describe("Line", () => {
   describe("toString", () => {
@@ -175,6 +176,14 @@ describe("Line", () => {
         new Line({ x: 3, y: 2 }, { x: 3, y: 2 })
       ];
       assert.deepStrictEqual(line.split().expected);
+    });
+  });
+
+  describe("hasPoint", () => {
+    it("should validate if given point are lies on the line", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 5, y: 4 });
+      const point = new Point(4, 3);
+      assert.isTrue(line.hasPoint(point));
     });
   });
 });

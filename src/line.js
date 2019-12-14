@@ -1,3 +1,5 @@
+const Point = require("./point.js");
+
 const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
@@ -57,6 +59,12 @@ class Line {
     const firstLine = new Line({ ...this.start }, { ...midPoint });
     const secondLine = new Line({ ...midPoint }, { ...this.end });
     return [firstLine, secondLine];
+  }
+
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+    const yIntercept = this.start.y - this.slope * this.start.x;
+    return other.y === this.slope * other.x + yIntercept;
   }
 }
 
