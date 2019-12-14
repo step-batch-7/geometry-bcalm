@@ -40,6 +40,7 @@ class Line {
 
   findX(ordinate) {
     if (this.end.y < ordinate || ordinate < this.start.y) return NaN;
+    if (this.slope === 0) return this.start.x;
     return (ordinate - this.start.y + this.slope * this.start.x) / this.slope;
   }
 }
