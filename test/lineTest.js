@@ -103,11 +103,12 @@ describe("Line", () => {
       const otherLine = { start: { x: 3, y: 2 }, end: { x: 6, y: 5 } };
       assert.isFalse(line.isParallelTo(otherLine));
     });
+  });
 
-    it("should validate two overlapping lines are parallel ", () => {
+  describe("findX", function() {
+    it("should give abscissa value for given ordinate", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      const otherLine = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.isTrue(line.isParallelTo(otherLine));
+      assert.deepStrictEqual(line.findX(3), 4);
     });
   });
 });
