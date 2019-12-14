@@ -17,5 +17,12 @@ describe("Point", () => {
       const actual = point.visit(add);
       assert.deepStrictEqual(actual, 3);
     });
+
+    it("should give the reminder when reminder function is given", () => {
+      const point = new Point(1, 2);
+      const reminder = (x, y) => x % y;
+      const actual = point.visit(reminder);
+      assert.deepStrictEqual(actual, 1);
+    });
   });
 });
