@@ -6,6 +6,10 @@ class Point {
   toString() {
     return `Point @(${this.x},${this.y})`;
   }
+
+  visit(functionREf) {
+    return functionREf(this.x, this.y);
+  }
 }
 
 module.exports = Point;
