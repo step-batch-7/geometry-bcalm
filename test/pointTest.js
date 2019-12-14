@@ -31,6 +31,7 @@ describe("Point", () => {
       const point = new Point(1, 2);
       const expected = new Point(1, 2);
       assert.deepStrictEqual(point.clone(), expected);
+      assert.notStrictEqual(point.clone(), expected);
     });
   });
 

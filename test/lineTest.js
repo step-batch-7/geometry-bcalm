@@ -127,7 +127,7 @@ describe("Line", () => {
     });
   });
 
-  describe("findY", function() {
+  describe("findY", () => {
     it("should give ordinate value for given abscissa", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.findY(4), 3);
@@ -146,6 +146,35 @@ describe("Line", () => {
     it("should give NaN if given x is outside the line segment", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.isNaN(line.findY(7));
+    });
+  });
+
+  describe("split", () => {
+    it("should divide line in two equal line if length of line is even", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 7, y: 6 });
+      const expected = [
+        new Line({ x: 3, y: 2 }, { x: 5, y: 4 }),
+        new Line({ x: 5, y: 4 }, { x: 7, y: 6 })
+      ];
+      assert.deepStrictEqual(line.split(), expected);
+    });
+
+    it("should divide line in two equal line if length of line is odd", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const expected = [
+        new Line({ x: 3, y: 2 }, { x: 4.5, y: 3.5 }),
+        new Line({ x: 4.5, y: 3.5 }, { x: 6, y: 5 })
+      ];
+      assert.deepStrictEqual(line.split(), expected);
+    });
+
+    it("should give two same line if length of line is zero", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 3, y: 2 });
+      const expected = [
+        new Line({ x: 3, y: 2 }, { x: 3, y: 2 }),
+        new Line({ x: 3, y: 2 }, { x: 3, y: 2 })
+      ];
+      assert.deepStrictEqual(line.split().expected);
     });
   });
 });

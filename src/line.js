@@ -49,6 +49,15 @@ class Line {
     if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
     return this.slope * (abscissa - this.start.x) + this.start.y;
   }
+
+  split() {
+    const midXPoint = (this.start.x + this.end.x) / 2;
+    const midYPoint = (this.start.y + this.end.y) / 2;
+    const midPoint = { x: midXPoint, y: midYPoint };
+    const firstLine = new Line({ ...this.start }, { ...midPoint });
+    const secondLine = new Line({ ...midPoint }, { ...this.end });
+    return [firstLine, secondLine];
+  }
 }
 
 module.exports = Line;
