@@ -111,6 +111,11 @@ describe("Line", () => {
       assert.deepStrictEqual(line.findX(3), 4);
     });
 
+    it("should give abscissa value if given ordinate is the starting point of line", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.deepStrictEqual(line.findX(2), 3);
+    });
+
     it("should give start abscissa value if line is parallel to x-axis", () => {
       const line = new Line({ x: 3, y: 1 }, { x: 6, y: 1 });
       assert.deepStrictEqual(line.findX(1), 3);
@@ -119,6 +124,28 @@ describe("Line", () => {
     it("should give NaN if given y is outside the line segment", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.isNaN(line.findX(7));
+    });
+  });
+
+  describe("findY", function() {
+    it("should give ordinate value for given abscissa", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.deepStrictEqual(line.findY(4), 3);
+    });
+
+    it("should give ordinate value if given abscissa is the starting point of line", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.deepStrictEqual(line.findY(3), 2);
+    });
+
+    it("should give start ordinate value if line is parallel to y-axis", () => {
+      const line = new Line({ x: 3, y: 1 }, { x: 3, y: 5 });
+      assert.deepStrictEqual(line.findY(3), 1);
+    });
+
+    it("should give NaN if given x is outside the line segment", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.isNaN(line.findY(7));
     });
   });
 });

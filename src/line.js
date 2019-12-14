@@ -43,6 +43,12 @@ class Line {
     if (this.slope === 0) return this.start.x;
     return (ordinate - this.start.y + this.slope * this.start.x) / this.slope;
   }
+
+  findY(abscissa) {
+    if (this.end.x < abscissa || abscissa < this.start.x) return NaN;
+    if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
+    return this.slope * (abscissa - this.start.x) + this.start.y;
+  }
 }
 
 module.exports = Line;
