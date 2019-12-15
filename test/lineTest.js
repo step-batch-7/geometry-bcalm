@@ -89,8 +89,20 @@ describe("Line", () => {
   describe("isParallelTo", () => {
     it("Two lines have same slope are parallel", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      const otherLine = new Line({ x: 5, y: 4 }, { x: 8, y: 7 });
+      const otherLine = new Line({ x: 5, y: 9 }, { x: 8, y: 12 });
       assert.isTrue(line.isParallelTo(otherLine));
+    });
+
+    it("should invalidate if two lines overlapped", () => {
+      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      const otherLine = new Line({ x: 5, y: 4 }, { x: 8, y: 7 });
+      assert.isFalse(line.isParallelTo(otherLine));
+    });
+
+    it("should invalidate if two lines are collinear", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const otherLine = new Line({ x: 6, y: 6 }, { x: 7, y: 7 });
+      assert.isFalse(line.isParallelTo(otherLine));
     });
 
     it("Two lines haven't same slope are not parallel", () => {

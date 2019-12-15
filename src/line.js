@@ -4,6 +4,13 @@ const arePointsEqual = function(pointA, pointB) {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 };
 
+const areCollinear = function(pointA, pointB, pointC) {
+  const [x1, y1] = [pointA.x, pointA.y];
+  const [x2, y2] = [pointB.x, pointB.y];
+  const [x3, y3] = [pointC.x, pointC.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -42,10 +49,10 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (!(other instanceof Line) || this === other || this.isEqualTo(other))
-      return false;
-    if (this.hasPoint(other.start) || other.hasPoint(this.start)) return false;
-    return other instanceof Line && this.slope === other.slope;
+    if (!(other instanceof Line)) return false;
+    const areSlopesSame = this.slope === other.slope;
+    const areLinesOverLapping = areCollinear(this.start, this.end, other.start);
+    return areSlopesSame && !areLinesOverLapping;
   }
 
   findX(ordinate) {
