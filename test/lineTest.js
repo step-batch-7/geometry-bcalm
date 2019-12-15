@@ -104,6 +104,19 @@ describe("Line", () => {
       const otherLine = { start: { x: 3, y: 2 }, end: { x: 6, y: 5 } };
       assert.isFalse(line.isParallelTo(otherLine));
     });
+
+    it("should invalidate if both lines are same", () => {
+      const line = new Line({ x: 1, y: 3 }, { x: 4, y: 3 });
+      const actual = line.isParallelTo(line);
+      assert.isFalse(actual);
+    });
+
+    it("should invalidate if both lines have same coordinates", () => {
+      const line = new Line({ x: 1, y: 3 }, { x: 4, y: 3 });
+      const other = new Line({ x: 1, y: 3 }, { x: 4, y: 3 });
+      const actual = line.isParallelTo(other);
+      assert.isFalse(actual);
+    });
   });
 
   describe("findX", function() {
@@ -184,6 +197,22 @@ describe("Line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 5, y: 4 });
       const point = new Point(4, 3);
       assert.isTrue(line.hasPoint(point));
+    });
+
+    it("should invalidate if given point aren't lies on the line", () => {
+      let line = new Line({ x: 1, y: 1 }, { x: 10, y: 10 });
+      let point = new Point(1, 11);
+      assert.isFalse(line.hasPoint(point));
+
+      line = new Line({ x: 1, y: 1 }, { x: 10, y: 10 });
+      point = new Point(11, 1);
+      assert.isFalse(line.hasPoint(point));
+    });
+
+    it("should invalidate if given point are not instanceof Point class", () => {
+      const line = new Line({ x: 1, y: 1 }, { x: 10, y: 10 });
+      const point = { x: 2, y: 5 };
+      assert.isFalse(line.hasPoint(point));
     });
   });
 });

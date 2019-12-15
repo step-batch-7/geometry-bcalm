@@ -36,8 +36,16 @@ class Line {
     return dy / dx;
   }
 
-  isParallelTo(otherLine) {
-    return otherLine instanceof Line && this.slope === otherLine.slope;
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+    return other.x === this.findX(other.y) || other.y === this.findY(other.x);
+  }
+
+  isParallelTo(other) {
+    if (!(other instanceof Line) || this === other || this.isEqualTo(other))
+      return false;
+    if (this.hasPoint(other.start) || other.hasPoint(this.start)) return false;
+    return other instanceof Line && this.slope === other.slope;
   }
 
   findX(ordinate) {
@@ -59,12 +67,6 @@ class Line {
     const firstLine = new Line({ ...this.start }, { ...midPoint });
     const secondLine = new Line({ ...midPoint }, { ...this.end });
     return [firstLine, secondLine];
-  }
-
-  hasPoint(other) {
-    if (!(other instanceof Point)) return false;
-    const yIntercept = this.start.y - this.slope * this.start.x;
-    return other.y === this.slope * other.x + yIntercept;
   }
 }
 
