@@ -11,6 +11,11 @@ const areCollinear = function(pointA, pointB, pointC) {
   return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 
+const isNumberNotInRange = function(range, number) {
+  const [bottomLim, topLim] = range.sort((x, y) => x - y);
+  return number < bottomLim || number > topLim;
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -56,13 +61,13 @@ class Line {
   }
 
   findX(ordinate) {
-    if (this.end.y < ordinate || ordinate < this.start.y) return NaN;
+    if (isNumberNotInRange([this.start.y, this.end.y], ordinate)) return NaN;
     if (this.slope === 0) return this.start.x;
     return (ordinate - this.start.y + this.slope * this.start.x) / this.slope;
   }
 
   findY(abscissa) {
-    if (this.end.x < abscissa || abscissa < this.start.x) return NaN;
+    if (isNumberNotInRange([this.start.x, this.end.x], abscissa)) return NaN;
     if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
     return this.slope * (abscissa - this.start.x) + this.start.y;
   }

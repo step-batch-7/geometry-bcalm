@@ -133,7 +133,10 @@ describe("Line", () => {
 
   describe("findX", function() {
     it("should give abscissa value for given ordinate", () => {
-      const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      let line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
+      assert.deepStrictEqual(line.findX(3), 4);
+
+      line = new Line({ x: 6, y: 5 }, { x: 3, y: 2 });
       assert.deepStrictEqual(line.findX(3), 4);
     });
 
