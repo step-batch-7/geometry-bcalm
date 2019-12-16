@@ -1,9 +1,5 @@
 const Point = require("./point.js");
 
-const arePointsEqual = function(pointA, pointB) {
-  return pointA.x === pointB.x && pointA.y === pointB.y;
-};
-
 const areCollinear = function(pointA, pointB, pointC) {
   const [x1, y1] = [pointA.x, pointA.y];
   const [x2, y2] = [pointB.x, pointB.y];
@@ -18,8 +14,8 @@ const isNumberNotInRange = function(range, number) {
 
 class Line {
   constructor(start, end) {
-    this.start = { x: start.x, y: start.y };
-    this.end = { x: end.x, y: end.y };
+    this.start = new Point(start.x, start.y);
+    this.end = new Point(end.x, end.y);
   }
 
   toString() {
@@ -32,10 +28,8 @@ class Line {
     if (!(other instanceof Line)) return false;
 
     return (
-      (arePointsEqual(this.start, other.start) &&
-        arePointsEqual(this.end, other.end)) ||
-      (arePointsEqual(this.end, other.start) &&
-        arePointsEqual(this.start, other.end))
+      (this.start.isEqualTo(other.start) && this.end.isEqualTo(other.end)) ||
+      (this.end.isEqualTo(other.start) && this.start.isEqualTo(other.end))
     );
   }
 
@@ -78,15 +72,11 @@ class Line {
     const midXPoint = (this.start.x + this.end.x) / 2;
     const midYPoint = (this.start.y + this.end.y) / 2;
     const midPoint = { x: midXPoint, y: midYPoint };
-    return [
-      new Line({ ...this.start }, { ...midPoint }),
-      new Line({ ...midPoint }, { ...this.end })
-    ];
+    return [new Line(this.start, midPoint), new Line(midPoint, this.end)];
   }
 
   findPointFromStart(distance) {
-    if (!Number.isInteger(distance) || distance > this.length || distance < 0)
-      return null;
+    if (distance > this.length || distance < 0) return null;
     const ratio = distance / this.length;
     const [x, y] = [
       (1 - ratio) * this.start.x + ratio * this.end.x,

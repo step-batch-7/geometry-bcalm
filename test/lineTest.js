@@ -3,7 +3,7 @@ const Line = require("../src/line.js");
 const Point = require("../src/point.js");
 
 describe("Line", () => {
-  describe("toString", () => {
+  describe("#toString", () => {
     it("String representation of line object", () => {
       const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = a.toString();
@@ -12,7 +12,7 @@ describe("Line", () => {
     });
   });
 
-  describe("isEqualTo", () => {
+  describe("#isEqualTo", () => {
     it("Two lines have same ends points are equal ", () => {
       const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const b = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
@@ -38,7 +38,7 @@ describe("Line", () => {
     });
   });
 
-  describe("length", () => {
+  describe("#length", () => {
     it("Should give length of line for positive points", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 6 });
       assert.deepStrictEqual(line.length, 5);
@@ -60,7 +60,7 @@ describe("Line", () => {
     });
   });
 
-  describe("slope", () => {
+  describe("#slope", () => {
     it("should give slope of line for positive integer", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.slope, 1);
@@ -92,7 +92,7 @@ describe("Line", () => {
     });
   });
 
-  describe("isParallelTo", () => {
+  describe("#isParallelTo", () => {
     it("Two lines have same slope are parallel", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       const otherLine = new Line({ x: 5, y: 9 }, { x: 8, y: 12 });
@@ -143,7 +143,7 @@ describe("Line", () => {
     });
   });
 
-  describe("findX", function() {
+  describe("#findX", function() {
     it("should give abscissa value for given ordinate", () => {
       let line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.findX(3), 4);
@@ -168,7 +168,7 @@ describe("Line", () => {
     });
   });
 
-  describe("findY", () => {
+  describe("#findY", () => {
     it("should give ordinate value for given abscissa", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
       assert.deepStrictEqual(line.findY(4), 3);
@@ -190,7 +190,7 @@ describe("Line", () => {
     });
   });
 
-  describe("split", () => {
+  describe("#split", () => {
     it("should divide line in two equal line if length of line is even", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 7, y: 6 });
       const expected = [
@@ -219,7 +219,7 @@ describe("Line", () => {
     });
   });
 
-  describe("hasPoint", () => {
+  describe("#hasPoint", () => {
     it("should validate if given point are lies on the line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 5, y: 4 });
       const point = new Point(4, 3);
@@ -249,16 +249,11 @@ describe("Line", () => {
     });
   });
 
-  describe("findPointFromStart", () => {
+  describe("#findPointFromStart", () => {
     it("should give point of a line in a specific distance", () => {
       const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
       const expected = new Point(9, 1);
       assert.deepStrictEqual(line.findPointFromStart(1), expected);
-    });
-
-    it("should give NaN if given distance are not a number", () => {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.isNull(line.findPointFromStart("hello"));
     });
 
     it("should give null if given distance is less than 0", () => {
@@ -267,16 +262,11 @@ describe("Line", () => {
     });
   });
 
-  describe("findPointFromEnd", () => {
+  describe("#findPointFromEnd", () => {
     it("should give point of a line in a specific distance", () => {
       const line = new Line({ x: 7, y: 1 }, { x: 10, y: 1 });
       const expected = new Point(9, 1);
       assert.deepStrictEqual(line.findPointFromEnd(1), expected);
-    });
-
-    it("should give NaN if given distance are not a number", () => {
-      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.isNull(line.findPointFromEnd("hello"));
     });
 
     it("should give null if given distance is less than 0", () => {
