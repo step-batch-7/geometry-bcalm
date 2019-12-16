@@ -242,4 +242,10 @@ describe("Line", () => {
       assert.isFalse(line.hasPoint(point));
     });
   });
+
+  describe("findPointFromStart", () => {
+    const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+    const expected = new Point(9, 1);
+    assert.deepStrictEqual(line.findPointFromStart(1), expected);
+  });
 });

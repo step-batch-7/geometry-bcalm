@@ -16,6 +16,13 @@ const isNumberNotInRange = function(range, number) {
   return number < bottomLim || number > topLim;
 };
 
+const findPoint = function(ratio, points) {
+  return [
+    (1 - ratio) * points.start.x + ratio * points.end.x,
+    (1 - ratio) * points.start.y + ratio * points.end.y
+  ];
+};
+
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -82,6 +89,13 @@ class Line {
       new Line({ ...this.start }, { ...midPoint }),
       new Line({ ...midPoint }, { ...this.end })
     ];
+  }
+
+  findPointFromStart(distance) {
+    if (distance > this.length) return null;
+    const ratio = distance / this.length;
+    const [x, y] = findPoint(ratio, this);
+    return new Point(x, y);
   }
 }
 

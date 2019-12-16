@@ -56,10 +56,10 @@ describe("Point", () => {
   });
 
   describe("findDistanceTo", () => {
-    it("should invalidate if given point are not instance of Point", () => {
+    it("should give NaN if given point are not instance of Point", () => {
       const point = new Point(1, 2);
       const other = { x: 1, y: 3 };
-      assert.isFalse(point.findDistanceTo(other));
+      assert.isNaN(point.findDistanceTo(other));
     });
 
     it("should give distance b/w two positive points", () => {
