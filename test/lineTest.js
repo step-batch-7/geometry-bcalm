@@ -241,6 +241,12 @@ describe("Line", () => {
       const point = { x: 2, y: 5 };
       assert.isFalse(line.hasPoint(point));
     });
+
+    it("should validate if the given point is on the line segment and the line is a vertical line", function() {
+      const line = new Line({ x: -1, y: 2 }, { x: -1, y: 20 });
+      const point = new Point(-1, 7);
+      assert.ok(line.hasPoint(point));
+    });
   });
 
   describe("findPointFromStart", () => {
@@ -258,6 +264,29 @@ describe("Line", () => {
     it("should give null if given distance is less than 0", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       assert.isNull(line.findPointFromStart(-1));
+    });
+  });
+
+  describe("findPointFromEnd", () => {
+    it("should give point of a line in a specific distance", () => {
+      const line = new Line({ x: 7, y: 1 }, { x: 10, y: 1 });
+      const expected = new Point(9, 1);
+      assert.deepStrictEqual(line.findPointFromEnd(1), expected);
+    });
+
+    it("should give NaN if given distance are not a number", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.isNull(line.findPointFromEnd("hello"));
+    });
+
+    it("should give null if given distance is less than 0", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.isNull(line.findPointFromEnd(-1));
+    });
+
+    it("should give null if given distance are more than line length", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.isNull(line.findPointFromEnd(100));
     });
   });
 });

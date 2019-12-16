@@ -16,13 +16,6 @@ const isNumberNotInRange = function(range, number) {
   return number < bottomLim || number > topLim;
 };
 
-const findPoint = function(ratio, points) {
-  return [
-    (1 - ratio) * points.start.x + ratio * points.end.x,
-    (1 - ratio) * points.start.y + ratio * points.end.y
-  ];
-};
-
 class Line {
   constructor(start, end) {
     this.start = { x: start.x, y: start.y };
@@ -58,11 +51,6 @@ class Line {
     return dy / dx;
   }
 
-  hasPoint(other) {
-    if (!(other instanceof Point)) return false;
-    return other.x === this.findX(other.y) || other.y === this.findY(other.x);
-  }
-
   isParallelTo(other) {
     if (!(other instanceof Line) || this === other) return false;
     if (areCollinear(this.start, this.end, other.start)) return false;
@@ -72,13 +60,18 @@ class Line {
   findX(ordinate) {
     if (isNumberNotInRange([this.start.y, this.end.y], ordinate)) return NaN;
     if (this.slope === 0) return this.start.x;
-    return (ordinate - this.start.y + this.slope * this.start.x) / this.slope;
+    return (ordinate - this.start.y) / this.slope + this.start.x;
   }
 
   findY(abscissa) {
     if (isNumberNotInRange([this.start.x, this.end.x], abscissa)) return NaN;
     if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
     return this.slope * (abscissa - this.start.x) + this.start.y;
+  }
+
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+    return other.x === this.findX(other.y) || other.y === this.findY(other.x);
   }
 
   split() {
@@ -95,8 +88,15 @@ class Line {
     if (!Number.isInteger(distance) || distance > this.length || distance < 0)
       return null;
     const ratio = distance / this.length;
-    const [x, y] = findPoint(ratio, this);
+    const [x, y] = [
+      (1 - ratio) * this.start.x + ratio * this.end.x,
+      (1 - ratio) * this.start.y + ratio * this.end.y
+    ];
     return new Point(x, y);
+  }
+
+  findPointFromEnd(distance) {
+    return new Line(this.end, this.start).findPointFromStart(distance);
   }
 }
 
