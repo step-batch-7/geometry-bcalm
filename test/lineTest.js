@@ -30,6 +30,12 @@ describe("Line", () => {
       const b = { start: { x: 1, y: 2 }, end: { x: 3, y: 3 } };
       assert.isFalse(a.isEqualTo(b));
     });
+
+    it("should validate if points of lines are swapped", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const otherLine = new Line({ x: 1, y: 1 }, { x: 0, y: 0 });
+      assert.isTrue(line.isEqualTo(otherLine));
+    });
   });
 
   describe("length", () => {
