@@ -23,6 +23,13 @@ class Point {
     if (!(other instanceof Point)) return false;
     return arePointsEqual(this, other);
   }
+
+  findDistanceTo(other) {
+    if (!(other instanceof Point)) return false;
+    const dx = other.x - this.x;
+    const dy = other.y - this.y;
+    return Math.hypot(dx, dy);
+  }
 }
 
 module.exports = Point;

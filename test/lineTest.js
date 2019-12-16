@@ -123,6 +123,12 @@ describe("Line", () => {
       assert.isFalse(actual);
     });
 
+    it("should validate if both lines has infinity slope but lines are not collinear", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 5 });
+      const otherLine = new Line({ x: 3, y: 2 }, { x: 3, y: 5 });
+      assert.isTrue(line.isParallelTo(otherLine));
+    });
+
     it("should invalidate if both lines have same coordinates", () => {
       const line = new Line({ x: 1, y: 3 }, { x: 4, y: 3 });
       const other = new Line({ x: 1, y: 3 }, { x: 4, y: 3 });

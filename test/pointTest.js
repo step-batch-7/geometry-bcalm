@@ -54,4 +54,30 @@ describe("Point", () => {
       assert.isFalse(point.isEqualTo(other));
     });
   });
+
+  describe("findDistanceTo", () => {
+    it("should invalidate if given point are not instance of Point", () => {
+      const point = new Point(1, 2);
+      const other = { x: 1, y: 3 };
+      assert.isFalse(point.findDistanceTo(other));
+    });
+
+    it("should give distance b/w two positive points", () => {
+      const point = new Point(1, 2);
+      const other = new Point(3, 4);
+      assert.approximately(point.findDistanceTo(other), 2.8, 0.2);
+    });
+
+    it("should give distance b/w two negative numbers", () => {
+      const point = new Point(-1, -2);
+      const otherPoint = new Point(-3, -4);
+      assert.approximately(point.findDistanceTo(otherPoint), 2.8, 0.2);
+    });
+
+    it("should give zero if both points are same", () => {
+      const point = new Point(1, 2);
+      const otherPoint = new Point(1, 2);
+      assert.strictEqual(point.findDistanceTo(otherPoint), 0);
+    });
+  });
 });
