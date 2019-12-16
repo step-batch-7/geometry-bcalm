@@ -8,7 +8,7 @@ class Point {
   }
 
   toString() {
-    return `Point @(${this.x},${this.y})`;
+    return `[Point @(${this.x},${this.y})]`;
   }
 
   visit(functionREf) {
