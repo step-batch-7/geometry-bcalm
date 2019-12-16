@@ -30,6 +30,10 @@ class Point {
     const dy = other.y - this.y;
     return Math.hypot(dx, dy);
   }
+
+  isOn(line) {
+    return line.hasPoint(this);
+  }
 }
 
 module.exports = Point;

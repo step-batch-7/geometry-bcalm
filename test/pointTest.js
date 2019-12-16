@@ -1,4 +1,5 @@
 const Point = require("../src/point.js");
+const Line = require("../src/line.js");
 const assert = require("chai").assert;
 
 describe("Point", () => {
@@ -78,6 +79,20 @@ describe("Point", () => {
       const point = new Point(1, 2);
       const otherPoint = new Point(1, 2);
       assert.strictEqual(point.findDistanceTo(otherPoint), 0);
+    });
+  });
+
+  describe("isOn", () => {
+    it("should validate if given points are on the line", () => {
+      const point = new Point(2, 2);
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.isTrue(point.isOn(line));
+    });
+
+    it("should invalidate if given point are not on the line ", () => {
+      const point = new Point(2, 2);
+      const line = new Line({ x: 1, y: 1 }, { x: 4, y: 3 });
+      assert.isFalse(point.isOn(line));
     });
   });
 });
