@@ -9,6 +9,11 @@ class Circle {
     const center = `(${this.center.x},${this.center.y})`;
     return `[Circle @${center} radius ${this.radius}]`;
   }
+
+  isEqualTo(other) {
+    if (!(other instanceof Circle)) return false;
+    return this.center.isEqualTo(other.center) && this.radius === other.radius;
+  }
 }
 
 module.exports = Circle;
