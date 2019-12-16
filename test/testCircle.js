@@ -1,4 +1,5 @@
 const assert = require("chai").assert;
+const Point = require("../src/point.js");
 const Circle = require("../src/circle.js");
 
 describe("Circle", () => {
@@ -64,6 +65,26 @@ describe("Circle", () => {
     it("should give zero if radius of circle is zero", () => {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       assert.strictEqual(circle.perimeter, 0);
+    });
+  });
+
+  describe("#hasPoint", () => {
+    it("should validate if given point is lies on the circle's circumference", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      assert.isTrue(circle.hasPoint(point));
+    });
+
+    it("should invalidate if given point are not lies on the circle's circumference", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(1, 5);
+      assert.isFalse(circle.hasPoint(point));
+    });
+
+    it("should invalidate if given point is not instanceof Point", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = { x: 0, y: 5 };
+      assert.isFalse(circle.hasPoint(point));
     });
   });
 });
