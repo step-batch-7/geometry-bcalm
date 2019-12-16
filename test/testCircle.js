@@ -42,4 +42,11 @@ describe("Circle", () => {
       assert.isFalse(circle.isEqualTo(otherCircle));
     });
   });
+
+  describe("#area", () => {
+    it("should give area of circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      assert.closeTo(circle.area, 154, 0.5);
+    });
+  });
 });
