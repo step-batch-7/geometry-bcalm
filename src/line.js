@@ -92,7 +92,8 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (isNaN(+distance) || distance > this.length || distance < 0) return null;
+    if (!Number.isInteger(distance) || distance > this.length || distance < 0)
+      return null;
     const ratio = distance / this.length;
     const [x, y] = findPoint(ratio, this);
     return new Point(x, y);
