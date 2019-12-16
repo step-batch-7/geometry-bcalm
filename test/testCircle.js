@@ -48,5 +48,10 @@ describe("Circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 7);
       assert.closeTo(circle.area, 154, 0.5);
     });
+
+    it("should give zero as area if radius is zero", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.strictEqual(circle.area, 0);
+    });
   });
 });
