@@ -244,8 +244,20 @@ describe("Line", () => {
   });
 
   describe("findPointFromStart", () => {
-    const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
-    const expected = new Point(9, 1);
-    assert.deepStrictEqual(line.findPointFromStart(1), expected);
+    it("should give point of a line in a specific distance", () => {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      const expected = new Point(9, 1);
+      assert.deepStrictEqual(line.findPointFromStart(1), expected);
+    });
+
+    it("should give NaN if given distance are not a number", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.isNull(line.findPointFromStart("hello"));
+    });
+
+    it("should give null if given distance is less than 0", () => {
+      const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      assert.isNull(line.findPointFromStart(-1));
+    });
   });
 });
