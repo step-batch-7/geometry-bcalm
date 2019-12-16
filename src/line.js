@@ -40,7 +40,8 @@ class Line {
   get slope() {
     const dx = this.end.x - this.start.x;
     const dy = this.end.y - this.start.y;
-    return dy / dx;
+    const slope = dy / dx;
+    return slope === -Infinity ? Infinity : slope;
   }
 
   isParallelTo(other) {
@@ -57,7 +58,7 @@ class Line {
 
   findY(abscissa) {
     if (isNumberNotInRange([this.start.x, this.end.x], abscissa)) return NaN;
-    if ([Infinity, -Infinity].includes(this.slope)) return this.start.y;
+    if (Infinity === this.slope) return this.start.y;
     return this.slope * (abscissa - this.start.x) + this.start.y;
   }
 
