@@ -43,6 +43,15 @@ class Rectangle {
     const DA = new Line(this.#pointD, this.pointA);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
   }
+
+  covers(other) {
+    if (!(other instanceof Point)) return false;
+    const [xMin, xMax] = [this.pointA.x, this.pointC.x].sort((x, y) => x - y);
+    const [yMin, yMax] = [this.pointA.y, this.pointC.y].sort((x, y) => x - y);
+    return (
+      other.x >= xMin && other.x <= xMax && other.y >= yMin && other.y <= yMax
+    );
+  }
 }
 
 module.exports = Rectangle;

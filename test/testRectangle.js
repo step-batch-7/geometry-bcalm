@@ -112,4 +112,30 @@ describe("#Rectangle", () => {
       assert.isTrue(rectangle.hasPoint(point));
     });
   });
+
+  describe("#covers", () => {
+    it("should validate if given points are inside rectangle's perimeter", () => {
+      const rectangle = new Rectangle({ x: 5, y: 5 }, { x: 0, y: 0 });
+      const point = new Point(2.5, 2.5);
+      assert.isTrue(rectangle.covers(point));
+    });
+
+    it("should invalidate if points are outside the rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 2 });
+      const point = new Point(4, 4);
+      assert.isFalse(rectangle.covers(point));
+    });
+
+    it("should validate if given point are lies on the perimeter of rectangle", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      const point = new Point(5, 3);
+      assert.isTrue(rectangle.covers(point));
+    });
+
+    it("should invalidate if given points are not instance of Point class", () => {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 2 });
+      const point = { x: 1, y: 1 };
+      assert.isFalse(rectangle.covers(point));
+    });
+  });
 });
