@@ -85,7 +85,7 @@ class Line {
   }
 
   findPointFromEnd(distance) {
-    return new Line(this.end, this.start).findPointFromStart(distance);
+    return this.findPointFromStart(this.length - distance);
   }
 }
 
