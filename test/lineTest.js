@@ -8,7 +8,7 @@ describe("Line", () => {
       const a = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = a.toString();
       const expected = "[Line (1,2) to (3,4)]";
-      assert.deepStrictEqual(actual, expected);
+      assert.strictEqual(actual, expected);
     });
   });
 
@@ -41,12 +41,12 @@ describe("Line", () => {
   describe("#length", () => {
     it("Should give length of line for positive points", () => {
       const line = new Line({ x: 1, y: 2 }, { x: 4, y: 6 });
-      assert.deepStrictEqual(line.length, 5);
+      assert.strictEqual(line.length, 5);
     });
 
     it("Should give length of line for negative points", () => {
       const line = new Line({ x: -1, y: -2 }, { x: 2, y: 2 });
-      assert.deepStrictEqual(line.length, 5);
+      assert.strictEqual(line.length, 5);
     });
 
     it("Should give length of line for floating points", () => {
@@ -56,19 +56,19 @@ describe("Line", () => {
 
     it("Should give zero if coordinates are same", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 3, y: 2 });
-      assert.deepStrictEqual(line.length, 0);
+      assert.strictEqual(line.length, 0);
     });
   });
 
   describe("#slope", () => {
     it("should give slope of line for positive integer", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.deepStrictEqual(line.slope, 1);
+      assert.strictEqual(line.slope, 1);
     });
 
     it("should give slope for negative integer", () => {
       const line = new Line({ x: -3, y: -2 }, { x: -6, y: -5 });
-      assert.deepStrictEqual(line.slope, 1);
+      assert.strictEqual(line.slope, 1);
     });
 
     it("should give NaN if length of line is zero", () => {
@@ -78,12 +78,15 @@ describe("Line", () => {
 
     it("should give zero if line is parallel to x-axis", () => {
       const line = new Line({ x: 5, y: 3 }, { x: 7, y: 3 });
-      assert.deepStrictEqual(line.slope, 0);
+      assert.strictEqual(line.slope, 0);
     });
 
     it("should give infinity if line is parallel to y- axis", () => {
-      const line = new Line({ x: 3, y: 1 }, { x: 3, y: 4 });
-      assert.deepStrictEqual(line.slope, Infinity);
+      let line = new Line({ x: 3, y: 1 }, { x: 3, y: 4 });
+      assert.strictEqual(line.slope, Infinity);
+
+      line = new Line({ x: 3, y: 4 }, { x: 3, y: 1 });
+      assert.strictEqual(line.slope, Infinity);
     });
 
     it("should give slope for floating numbers", () => {
@@ -146,20 +149,20 @@ describe("Line", () => {
   describe("#findX", function() {
     it("should give abscissa value for given ordinate", () => {
       let line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.deepStrictEqual(line.findX(3), 4);
+      assert.strictEqual(line.findX(3), 4);
 
       line = new Line({ x: 6, y: 5 }, { x: 3, y: 2 });
-      assert.deepStrictEqual(line.findX(3), 4);
+      assert.strictEqual(line.findX(3), 4);
     });
 
     it("should give abscissa value if given ordinate is the starting point of line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.deepStrictEqual(line.findX(2), 3);
+      assert.strictEqual(line.findX(2), 3);
     });
 
     it("should give start abscissa value if line is parallel to x-axis", () => {
       const line = new Line({ x: 3, y: 1 }, { x: 6, y: 1 });
-      assert.deepStrictEqual(line.findX(1), 3);
+      assert.strictEqual(line.findX(1), 3);
     });
 
     it("should give NaN if given y is outside the line segment", () => {
@@ -171,17 +174,17 @@ describe("Line", () => {
   describe("#findY", () => {
     it("should give ordinate value for given abscissa", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.deepStrictEqual(line.findY(4), 3);
+      assert.strictEqual(line.findY(4), 3);
     });
 
     it("should give ordinate value if given abscissa is the starting point of line", () => {
       const line = new Line({ x: 3, y: 2 }, { x: 6, y: 5 });
-      assert.deepStrictEqual(line.findY(3), 2);
+      assert.strictEqual(line.findY(3), 2);
     });
 
     it("should give start ordinate value if line is parallel to y-axis", () => {
       const line = new Line({ x: 3, y: 1 }, { x: 3, y: 5 });
-      assert.deepStrictEqual(line.findY(3), 1);
+      assert.strictEqual(line.findY(3), 1);
     });
 
     it("should give NaN if given x is outside the line segment", () => {
