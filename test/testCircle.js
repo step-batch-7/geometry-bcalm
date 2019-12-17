@@ -112,5 +112,29 @@ describe("Circle", () => {
       const point = { x: 1, y: 1 };
       assert.isFalse(circle.covers(point));
     });
+
+    it("should validate if given point are lies on the circle of center", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = new Point(0, 0);
+      assert.isTrue(circle.covers(point));
+    });
+  });
+
+  describe("#moveTo", () => {
+    it("should move cursor one center to another center", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const newCenter = { x: 3, y: 3 };
+      const expected = new Circle({ x: 3, y: 3 }, 5);
+      assert.isTrue(expected instanceof Circle);
+      assert.deepStrictEqual(circle.moveTo(newCenter), expected);
+    });
+
+    it("should give same circle if given point are circle's center", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const newCenter = { x: 0, y: 0 };
+      const expected = new Circle({ x: 0, y: 0 }, 5);
+      assert.isTrue(expected instanceof Circle);
+      assert.deepStrictEqual(circle.moveTo(newCenter), expected);
+    });
   });
 });
