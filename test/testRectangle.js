@@ -86,4 +86,30 @@ describe("#Rectangle", () => {
       assert.ok(rectangle.isEqualTo(rectangle));
     });
   });
+
+  describe("hasPoint", () => {
+    it("should validate if points lies on rectangle's length", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(5, 2);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if points aren't lies on rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(7, 4);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+
+    it("should invalidate if points aren't instance of Point", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = { x: 5, y: 4 };
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+
+    it("should validate if points lies on rectangle's width", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const point = new Point(3, 1);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+  });
 });
