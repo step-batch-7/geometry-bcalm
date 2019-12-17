@@ -64,4 +64,26 @@ describe("#Rectangle", () => {
       assert.strictEqual(rectangle.perimeter, 26);
     });
   });
+
+  describe("#isEqualTo", () => {
+    it("should check if given object is same", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+    it("should check if given object is not same", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 5, y: 4 });
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+    it("should check if given object is not instance of Rectangle", () => {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      const r = { pointA: { x: 1, y: 1 }, pointC: { x: 5, y: 4 } };
+      assert.notOk(rectangle1.isEqualTo(r));
+    });
+    it("should check if same instance is passed", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 4 });
+      assert.ok(rectangle.isEqualTo(rectangle));
+    });
+  });
 });
