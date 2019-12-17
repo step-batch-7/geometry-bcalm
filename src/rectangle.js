@@ -1,14 +1,23 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 
+const getAnotherDiagonal = function(pointA, pointC) {
+  return [new Point(pointA.x, pointC.y), new Point(pointC.x, pointA.y)];
+};
+
+const createEdge = function(pointA, pointC) {
+  const [pointB, pointD] = getAnotherDiagonal(pointA, pointC);
+  const AB = new Line(pointA, pointB);
+  const BC = new Line(pointB, pointC);
+  const CD = new Line(pointC, pointD);
+  const DA = new Line(pointD, pointA);
+  return [AB, BC, CD, DA];
+};
+
 class Rectangle {
-  #pointB;
-  #pointD;
   constructor(pointA, pointC) {
     this.pointA = new Point(pointA.x, pointA.y);
-    this.#pointB = new Point(pointA.x, pointC.y);
     this.pointC = new Point(pointC.x, pointC.y);
-    this.#pointD = new Point(pointC.x, pointA.y);
   }
 
   toString() {
@@ -37,11 +46,12 @@ class Rectangle {
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const AB = new Line(this.pointA, this.#pointB);
-    const BC = new Line(this.#pointB, this.pointC);
-    const CD = new Line(this.pointC, this.#pointD);
-    const DA = new Line(this.#pointD, this.pointA);
-    return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
+    const [pointB, pointD] = getAnotherDiagonal(this.pointA, this.pointC);
+    const AB = new Line(this.pointA, pointB);
+    const BC = new Line(pointB, this.pointC);
+    const CD = new Line(this.pointC, pointD);
+    const DA = new Line(pointD, this.pointA);
+    return [AB, BC, CD, DA].some(line => point.isOn(line));
   }
 
   covers(other) {
