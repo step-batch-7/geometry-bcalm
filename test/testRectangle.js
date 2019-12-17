@@ -126,10 +126,10 @@ describe("#Rectangle", () => {
       assert.isFalse(rectangle.covers(point));
     });
 
-    it("should validate if given point are lies on the perimeter of rectangle", () => {
+    it("should invalidate if given point are lies on the perimeter of rectangle", () => {
       const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
       const point = new Point(5, 3);
-      assert.isTrue(rectangle.covers(point));
+      assert.isFalse(rectangle.covers(point));
     });
 
     it("should invalidate if given points are not instance of Point class", () => {

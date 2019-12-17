@@ -101,10 +101,10 @@ describe("Circle", () => {
       assert.isFalse(circle.covers(point));
     });
 
-    it("should validate if given point are lies on the circumference of circle", () => {
+    it("should invalidate if given point are lies on the circumference of circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const point = new Point(5, 0);
-      assert.isTrue(circle.covers(point));
+      assert.isFalse(circle.covers(point));
     });
 
     it("should invalidate if given points are not instance of Point class", () => {

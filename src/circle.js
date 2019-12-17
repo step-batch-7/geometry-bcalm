@@ -34,7 +34,7 @@ class Circle {
 
   covers(other) {
     if (!(other instanceof Point)) return false;
-    return this.centre.findDistanceTo(other) <= this.radius;
+    return this.centre.findDistanceTo(other) < this.radius;
   }
 
   moveTo(other) {
