@@ -5,19 +5,14 @@ const getAnotherDiagonal = function(pointA, pointC) {
   return [new Point(pointA.x, pointC.y), new Point(pointC.x, pointA.y)];
 };
 
-const createEdge = function(pointA, pointC) {
-  const [pointB, pointD] = getAnotherDiagonal(pointA, pointC);
-  const AB = new Line(pointA, pointB);
-  const BC = new Line(pointB, pointC);
-  const CD = new Line(pointC, pointD);
-  const DA = new Line(pointD, pointA);
-  return [AB, BC, CD, DA];
-};
-
 class Rectangle {
   constructor(pointA, pointC) {
     this.pointA = new Point(pointA.x, pointA.y);
     this.pointC = new Point(pointC.x, pointC.y);
+    Object.defineProperties(this, {
+      pointA: { writable: false },
+      pointC: { writable: false }
+    });
   }
 
   toString() {

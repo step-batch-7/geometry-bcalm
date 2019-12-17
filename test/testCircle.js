@@ -47,7 +47,7 @@ describe("Circle", () => {
   describe("#area", () => {
     it("should give area of circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 7);
-      assert.closeTo(circle.area, 154, 0.1);
+      assert.strictEqual(circle.area, 154);
     });
 
     it("should give zero as area if radius is zero", () => {
@@ -59,7 +59,7 @@ describe("Circle", () => {
   describe("#perimeter", () => {
     it("should give perimeter of given circle", () => {
       const circle = new Circle({ x: 0, y: 0 }, 7);
-      assert.closeTo(circle.perimeter, 44, 0.3);
+      assert.strictEqual(circle.perimeter, 44);
     });
 
     it("should give zero if radius of circle is zero", () => {

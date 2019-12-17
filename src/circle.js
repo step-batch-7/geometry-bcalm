@@ -1,18 +1,22 @@
 const Point = require("./point.js");
 
 class Circle {
-  constructor(center, radius) {
-    [this.center, this.radius] = [new Point(center.x, center.y), radius];
+  constructor(centre, radius) {
+    [this.centre, this.radius] = [new Point(centre.x, centre.y), radius];
+    Object.defineProperties(this, {
+      centre: { writable: false },
+      radius: { writable: false }
+    });
   }
 
   toString() {
-    const center = `(${this.center.x},${this.center.y})`;
-    return `[Circle @${center} radius ${this.radius}]`;
+    const centre = `(${this.centre.x},${this.centre.y})`;
+    return `[Circle @${centre} radius ${this.radius}]`;
   }
 
   isEqualTo(other) {
     if (!(other instanceof Circle)) return false;
-    return this.center.isEqualTo(other.center) && this.radius === other.radius;
+    return this.centre.isEqualTo(other.centre) && this.radius === other.radius;
   }
 
   get area() {
@@ -25,12 +29,12 @@ class Circle {
 
   hasPoint(other) {
     if (!(other instanceof Point)) return false;
-    return this.center.findDistanceTo(other) === this.radius;
+    return this.centre.findDistanceTo(other) === this.radius;
   }
 
   covers(other) {
     if (!(other instanceof Point)) return false;
-    return this.center.findDistanceTo(other) <= this.radius;
+    return this.centre.findDistanceTo(other) <= this.radius;
   }
 
   moveTo(other) {
