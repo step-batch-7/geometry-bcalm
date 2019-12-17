@@ -87,4 +87,30 @@ describe("Circle", () => {
       assert.isFalse(circle.hasPoint(point));
     });
   });
+
+  describe("#covers", () => {
+    it("should validate if point is inside the circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(2.5, 2.5);
+      assert.isTrue(circle.covers(point));
+    });
+
+    it("should invalidate if points are outside the circle", () => {
+      const circle = new Circle({ x: 1, y: 2 }, 3);
+      const point = new Point(4, 4);
+      assert.isFalse(circle.covers(point));
+    });
+
+    it("should validate if given point are lies on the circumference of circle", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(5, 0);
+      assert.isTrue(circle.covers(point));
+    });
+
+    it("should invalidate if given points are not instance of Point class", () => {
+      const circle = new Circle({ x: 0, y: 0 }, 3);
+      const point = { x: 1, y: 1 };
+      assert.isFalse(circle.covers(point));
+    });
+  });
 });
