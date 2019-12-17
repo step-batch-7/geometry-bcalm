@@ -14,6 +14,12 @@ class Rectangle {
     const width = this.pointA.y - this.pointB.y;
     return Math.abs(length * width);
   }
+
+  get perimeter() {
+    const length = this.pointA.x - this.pointB.x;
+    const width = this.pointA.y - this.pointB.y;
+    return 2 * (Math.abs(length) + Math.abs(width));
+  }
 }
 
 module.exports = Rectangle;

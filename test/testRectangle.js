@@ -37,4 +37,31 @@ describe("#Rectangle", () => {
       assert.strictEqual(rectangle.area, 40);
     });
   });
+
+  describe("#perimeter", () => {
+    it("should give perimeter of rectangle", () => {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 5 });
+      assert.strictEqual(rectangle.perimeter, 16);
+    });
+
+    it("should give perimeter if length is zero", () => {
+      const rectangle = new Rectangle({ x: 1, y: 5 }, { x: 1, y: 4 });
+      assert.strictEqual(rectangle.perimeter, 2);
+    });
+
+    it("should give perimeter if width is zero", () => {
+      const rectangle = new Rectangle({ x: 1, y: 5 }, { x: 4, y: 5 });
+      assert.strictEqual(rectangle.perimeter, 6);
+    });
+
+    it("should give zero as perimeter if length and width is zero", () => {
+      const rectangle = new Rectangle({ x: 1, y: 5 }, { x: 1, y: 5 });
+      assert.strictEqual(rectangle.perimeter, 0);
+    });
+
+    it("should give perimeter for negative coordinates", () => {
+      const rectangle = new Rectangle({ x: -3, y: -5 }, { x: 2, y: 3 });
+      assert.strictEqual(rectangle.perimeter, 26);
+    });
+  });
 });
