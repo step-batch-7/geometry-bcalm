@@ -20,11 +20,11 @@ class Circle {
   }
 
   get area() {
-    return Math.ceil(Math.PI * this.radius ** 2);
+    return Math.PI * this.radius ** 2;
   }
 
   get perimeter() {
-    return Math.ceil(2 * Math.PI * this.radius);
+    return 2 * Math.PI * this.radius;
   }
 
   hasPoint(other) {
